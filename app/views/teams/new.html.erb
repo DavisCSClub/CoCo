@@ -1,0 +1,10 @@
+<h1>Teams#new</h1>
+<p>Create a new team!</p>
+
+<%= form_for @team, url: {action: "create"}, html: {class: "nifty_form" } do |f| %>
+  <%= f.text_field :name %>
+  <br />
+  <%= f.text_field :password %>
+  <br />
+  <%= f.submit %>
+<% end %>
