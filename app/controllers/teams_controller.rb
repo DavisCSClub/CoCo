@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
     @team = Team.new
   end
 
-  def show
+  def index 
     @teams = Team.all
   end
 

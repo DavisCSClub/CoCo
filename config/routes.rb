@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  get 'teams/new'
-  get 'teams' => 'teams#show'
-  get 'users/new'
-  post 'teams/create'
+  resources :teams
+  resources :users
   root 'static_pages#Home'
 
   # The priority is based upon order of creation: first created -> highest priority.
