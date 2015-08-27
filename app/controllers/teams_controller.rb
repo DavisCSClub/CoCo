@@ -3,10 +3,14 @@ class TeamsController < ApplicationController
     @team = Team.new
   end
 
+  def show
+    @teams = Team.all
+  end
+
   def create
     @team = Team.new team_params
     @team.save
-    redirect_to root_path 
+    redirect_to teams_path
   end
 
   private

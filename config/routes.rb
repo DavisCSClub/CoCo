@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'teams/new'
+  get 'teams' => 'teams#show'
   get 'users/new'
   post 'teams/create'
   root 'static_pages#Home'
