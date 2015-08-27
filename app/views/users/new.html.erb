@@ -3,7 +3,8 @@
 <p>Create a new user!</p>
 
 <%= form_for @user, url: {action: "create"}, html: {class: "nifty_form" } do |f| %>
-  <%= f.text_field :name %>,
-  <%= f.text_field :email %>,
+  <%= f.text_field :name %>  <br />
+  <%= f.text_field :email %> <br />
+  <%= f.collection_select(:team, Team.all, :id, :name) %> <br />
   <%= f.submit %>
 <% end %>
