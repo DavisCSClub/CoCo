@@ -9,8 +9,11 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new team_params
-    @team.save
-    redirect_to teams_path
+    if @team.save
+      redirect_to teams_path 
+    else
+      redirect_to new_team_path, alert: "Team could not be created"
+    end
   end
 
   private
