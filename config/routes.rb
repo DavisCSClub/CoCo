@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :teams
   resources :users
+  get 'questions/:id' => 'questions#show'
+  post 'questions/submit' => 'questions#submit'
   root 'static_pages#Home'
 
   # The priority is based upon order of creation: first created -> highest priority.

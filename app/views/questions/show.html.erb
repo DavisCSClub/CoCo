@@ -1,0 +1,9 @@
+<h1><%= @question.title %></h1>
+<p><%= @question.body %></p>
+
+<%= form_tag '/questions/submit' do %> 
+  <%= text_field_tag :answer %>
+  <%= hidden_field_tag :id, @question.id %>
+  <br />
+  <%= submit_tag 'Check' %> 
+<% end %>

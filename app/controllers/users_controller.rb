@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
   def new
-    # Cannot create a new user without a team to associate it with
-    # Modify new team path to show error message in this case
-    redirect_to new_team_path, alert: "No Teams exist yet!" if Team.all.length == 0
     @user = User.new
   end
 
@@ -11,11 +8,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.create(user_params)
+    if params[:team_id][:team_id].empty?
+      @user.create_team(team_params)
+    else
+      @user.team = Team.find(params[:team_id][:team_id])
+    end
     if @user.save
       redirect_to users_path
     else
-      redirect_to new_user_path, alert: "User creation failed :("
+      render 'new'
     end
   end
 
@@ -23,5 +25,9 @@ class UsersController < ApplicationController
 
   def user_params 
     params.require(:user).permit(:name, :email)
+  end
+
+  def team_params
+    params.require(:team).permit(:name, :password)
   end
 end
