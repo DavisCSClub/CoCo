@@ -2,22 +2,5 @@
 <h1>Users#new</h1>
 <p>Create a new user!</p>
 
-
-<%= form_for @user, url: {action: "create"} do |f| %>
-  <p> USER </p>
-  <%= f.text_field :name %> <br />
-  <%= f.text_field :email %> <br />
-
-  <%= fields_for :team_id do |team_id| %>
-    <p> TEAM </p>
-    <p> Select from existing team </p>
-    <%= team_id.collection_select(:team_id, Team.all, :id, :name, prompt: "Select a team") %> <br />
-  <% end %>
-
-  <%= fields_for :team do |team_fields| %>
-    <p> Or create a new one </p>
-    <%= team_fields.text_field :name %> <br />
-    <%= team_fields.text_field :password %> <br />
-  <% end %>  
-  <%= f.submit "Create user" %>
-<% end %>
+<%= link_to 'New User', new_user_path, remote: true %>
+<div id="user-form" style="display:none;"></div>
