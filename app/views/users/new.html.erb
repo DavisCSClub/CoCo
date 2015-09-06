@@ -3,10 +3,12 @@
 <p>Create a new user! You may select an already existing team, or create a new team.</p>
 
 <%= form_for @user do |form| %>
-  Name  : <%= form.text_field :name %>  <br />
-  Email : <%= form.text_field :email %> <br />
-  Team  : <%= form.collection_select(:team, Team.all, :id, :name, prompt: "Select an existing team") %> <br />
-  <%= link_to 'Create a New Team', new_user_path, remote: true %> <br />
-    <div id="user-form" style="display:none;"></div>
+  Name     : <%= form.text_field :name %>  <br />
+  Email    : <%= form.text_field :email %> <br />
+  <%= link_to 'Create a new team', new_user_path, remote: true, id: "new_team_button" %> <br />
+  <div id="user-form">
+    Team     : <%= form.collection_select(:team, Team.all, :id, :name, prompt: "Select an existing team") %> <br />
+    Password : <%= password_field_tag :password %>
+  </div>
   <%= form.submit %>
 <% end %>

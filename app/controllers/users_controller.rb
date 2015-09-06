@@ -16,7 +16,12 @@ class UsersController < ApplicationController
       @team.users.create(user_params)
     else 
       @team = Team.find(params[:user][:team])
-      @user = @team.users.create(user_params)
+      if params[password] == @team.password
+        @user = @team.users.create(user_params)
+      else
+        # Flash some error message
+        puts "Screwed up password!"
+      end
     end
 
     respond_to do |format| 

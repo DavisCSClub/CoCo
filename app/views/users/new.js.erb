@@ -1,3 +1,8 @@
-<% puts "Derp" %>
-$('#user-form').html("<%= j (render 'new_team_form') %>");
-$('#user-form').slideDown(400);
+buttonText = document.getElementById("new_team_button").innerHTML
+if ( buttonText == "Create a new team" ) {
+  document.getElementById("new_team_button").innerHTML = "Join existing team"
+  $('#user-form').html("<%= j (render 'new_team_form') %>");
+} else {
+  document.getElementById("new_team_button").innerHTML= "Create a new team"
+  $('#user-form').html("<%= j (render 'existing_team_form') %>");
+}
