@@ -11,17 +11,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    byebug
     if !params[:team].nil?
       @team = Team.create(team_params)
       @team.users.create(user_params)
     else 
       @team = Team.find(params[:user][:team])
-      @user = Team.users.create(user_params)
+      @user = @team.users.create(user_params)
     end
 
     respond_to do |format| 
-      format.html { redirect_to users_path }
+      format.html { redirect_to team_path(@team) }
       format.js
     end
   end
