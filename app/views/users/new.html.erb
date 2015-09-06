@@ -7,8 +7,7 @@
   Email    : <%= form.text_field :email %> <br />
   <%= link_to 'Create a new team', new_user_path, remote: true, id: "new_team_button" %> <br />
   <div id="user-form">
-    Team     : <%= form.collection_select(:team, Team.all, :id, :name, prompt: "Select an existing team") %> <br />
-    Password : <%= password_field_tag :password %>
+    <%= render 'existing_team_form' %>
   </div>
   <%= form.submit %>
 <% end %>

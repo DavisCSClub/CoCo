@@ -15,8 +15,8 @@ class UsersController < ApplicationController
       @team = Team.create(team_params)
       @team.users.create(user_params)
     else 
-      @team = Team.find(params[:user][:team])
-      if params[password] == @team.password
+      @team = Team.find(params[:team_id])
+      if params[:password] == @team.password
         @user = @team.users.create(user_params)
       else
         # Flash some error message
