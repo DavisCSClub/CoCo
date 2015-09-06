@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @team = Team.new
     respond_to do |format| 
       format.html
       format.js
@@ -10,10 +11,17 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    byebug
+    if !params[:team].nil?
+      @team = Team.create(team_params)
+      @team.users.create(user_params)
+    else 
+      @team = Team.find(params[:user][:team])
+      @user = Team.users.create(user_params)
+    end
 
     respond_to do |format| 
-      format.html
+      format.html { redirect_to users_path }
       format.js
     end
   end
@@ -22,6 +30,10 @@ class UsersController < ApplicationController
 
     def all_users
       @users = User.all
+    end
+
+    def team_params
+      params.require(:team).permit(:name, :password)
     end
 
     def user_params 

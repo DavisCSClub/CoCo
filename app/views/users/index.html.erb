@@ -5,7 +5,6 @@
   <p><%= user.name %></p>
 <% end %>
 
-<%= link_to new_user_path, remote: true do %>
+<%= link_to new_user_path do %>
   <button class="btn btn-default">New</button>
 <% end %>
-<div id="user-form" style="display:none;"></div>

@@ -1,6 +1,12 @@
 <% provide(:title, "New User") %>
 <h1>Users#new</h1>
-<p>Create a new user!</p>
+<p>Create a new user! You may select an already existing team, or create a new team.</p>
 
-<%= link_to 'New User', new_user_path, remote: true %>
-<div id="user-form" style="display:none;"></div>
+<%= form_for @user do |form| %>
+  Name  : <%= form.text_field :name %>  <br />
+  Email : <%= form.text_field :email %> <br />
+  Team  : <%= form.collection_select(:team, Team.all, :id, :name, prompt: "Select an existing team") %> <br />
+  <%= link_to 'Create a New Team', new_user_path, remote: true %> <br />
+    <div id="user-form" style="display:none;"></div>
+  <%= form.submit %>
+<% end %>
