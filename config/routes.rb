@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :teams
   resources :users
   get 'questions/:id' => 'questions#show'
+  get 'scoreboard' => 'static_pages#Scoreboard'
   post 'questions/submit' => 'questions#submit'
   root 'static_pages#Home'
 
