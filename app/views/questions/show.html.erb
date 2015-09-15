@@ -1,4 +1,5 @@
-<% yield(:title, @question.title) %>
+<% provide(:title, @question.title) %>
+
 <h1><%= @question.title %></h1>
 <p><%= @question.body %></p>
 
@@ -6,5 +7,5 @@
   <%= text_field_tag :answer %>
   <%= hidden_field_tag :id, @question.id %>
   <br />
-  <%= submit_tag 'Check' %> 
+  <%= submit_tag 'Submit' %> 
 <% end %>
