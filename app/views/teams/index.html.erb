@@ -2,5 +2,5 @@
 <h1>Teams</h1>
 
 <% @teams.each do |team| %>
-  <p><%= team.name %></p>
+  <p><%= link_to team.name, team %></p>
 <% end %>

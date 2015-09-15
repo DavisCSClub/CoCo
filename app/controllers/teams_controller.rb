@@ -9,6 +9,8 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @questions = Question.all
+    @answered = Answered.all
   end
 
   def create

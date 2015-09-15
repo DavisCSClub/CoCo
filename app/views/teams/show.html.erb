@@ -6,3 +6,23 @@
   <li><%= user.name %></li>
 <% end %>
 </ul>
+
+<h3>Progress</h3>
+
+<table border=1px>
+  <tr>
+  <% @questions.each do |q| %>
+    <th><%= q.title %></th>
+  <% end %>
+  </tr>
+  <tr>
+    <% @questions.each do |q| %>
+
+      <% if @answered.where(questionID: q.id, teamID: @team.id).empty? %>
+        <td ></td>
+      <% else %>
+        <td bgcolor="green"></td>
+      <% end %>
+    <% end %>
+  </tr>
+</table>
