@@ -13,16 +13,18 @@ class UsersController < ApplicationController
   def create
     if !params[:team].nil?
       @team = Team.create(team_params)
-      @team.users.create(user_params)
+      @user = @team.users.create(user_params)
     else 
       @team = Team.find(params[:team_id])
       if params[:password] == @team.password
         @user = @team.users.create(user_params)
       else
         # Flash some error message
-        puts "Screwed up password!"
+        flash[:failure] = "Could not create user"
       end
     end
+
+    log_in @user
 
     respond_to do |format| 
       format.html { redirect_to team_path(@team) }

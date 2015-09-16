@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   resources :teams
   resources :users
   resources :questions, :only => [:index, :show]
+
+  get    'login'  => 'sessions#new'
+  post   'login'  => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
   get 'scoreboard' => 'static_pages#Scoreboard'
   post 'questions/submit' => 'questions#submit'
   root 'static_pages#Home'
