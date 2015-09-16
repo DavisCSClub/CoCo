@@ -5,6 +5,16 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <%= link_to "Coder's Conundrum", root_path, id: "logo" %>
+  <nav>
+    <ul>
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Questions", questions_path %></li>
+      <li><%= link_to "Sign in", '#' %></li>
+    </ul>
+  </nav>
+
 </head>
 <body>
     <%= render 'layouts/header' %>
@@ -14,7 +24,7 @@
       <% end %>
     </div>
 
-<%= yield %>
+    <%= yield %>
 
 </body>
 </html>
