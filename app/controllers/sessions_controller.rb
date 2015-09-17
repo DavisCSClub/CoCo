@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email], name: params[:session][:name])
     if user.nil?
-      flash[:failure] = "Invalud User/Email combination"
+      flash[:failure] = "Invalid User/Email combination"
       redirect_to :back
     else
       log_in user

@@ -11,14 +11,18 @@
     <ul>
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Questions", questions_path %></li>
-      <li><%= link_to "Sign in", '#' %></li>
+      <% if logged_in %>
+        <li><%= link_to "Log out", logout_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Sign in", login_path %></li>
+      <% end %>
     </ul>
   </nav>
 
 </head>
 <body>
   <% if logged_in %>
-    <%= current_user.name %>
+    <%= @current_user.name + " is logged in" %>
   <% end %>
     <%= render 'layouts/header' %>
     <div class="container">
