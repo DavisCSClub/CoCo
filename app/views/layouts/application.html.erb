@@ -11,7 +11,9 @@
     <ul>
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Questions", questions_path %></li>
+      <li><%= link_to "Teams", teams_path %></li>
       <% if logged_in %>
+        <li><%= link_to "My Team", team_path(current_user.team_id) %></li>
         <li><%= link_to "Log out", logout_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Sign in", login_path %></li>
@@ -21,9 +23,6 @@
 
 </head>
 <body>
-  <% if logged_in %>
-    <%= @current_user.name + " is logged in" %>
-  <% end %>
     <%= render 'layouts/header' %>
     <div class="container">
       <% flash.each do |message_type, message| %>

@@ -7,5 +7,7 @@
   <%= text_field_tag :answer %>
   <%= hidden_field_tag :id, @question.id %>
   <br />
-  <%= submit_tag 'Submit' %> 
+  <% if logged_in %>
+    <%= submit_tag 'Submit' %> 
+  <% end %>  
 <% end %>
