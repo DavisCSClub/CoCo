@@ -9,6 +9,9 @@
   <%= link_to "Coder's Conundrum", root_path, id: "logo" %>
   <nav>
     <ul>
+      <% if logged_in %>
+        <li>Welcome, <%= current_user.name %></li>
+      <% end %>
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Questions", questions_path %></li>
       <li><%= link_to "Teams", teams_path %></li>
