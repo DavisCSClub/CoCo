@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
-  validates :name, presence: true
-  validates :team, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true 
+  validates :name, :team, presence: true
 
   belongs_to :team
 end
