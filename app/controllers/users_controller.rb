@@ -16,15 +16,15 @@ class UsersController < ApplicationController
     if params[:team].nil?
       @team = Team.find_by(params[:team_id])
       flash[:errors].push "Invalid team selection" if @team.nil?
+
+      if !@team.nil? && params[:password] == @team.password
+        @user = @team.users.create(user_params)
+      else
+        flash[:errors].push "Team password was not correct"
+      end
     else 
       @team = Team.create(team_params)
     end 
-
-    if !@team.nil? && params[:password] == @team.password
-      @user = @team.users.create(user_params)
-    else
-      flash[:errors].push "Team password was not correct"
-    end
 
     if !@user.nil? && @user.valid? && !@team.nil? && @team.valid?
       log_in @user
