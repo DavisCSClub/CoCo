@@ -12,15 +12,15 @@ class UsersController < ApplicationController
 
   def create
     # Just so we never have to worry about it being nil
-    flash[:errors] = []
+    flash[:validation_errors] = []
     if params[:team].nil?
       @team = Team.find_by(params[:team_id])
-      flash[:errors].push "Invalid team selection" if @team.nil?
+      flash[:validation_errors].push "Invalid team selection" if @team.nil?
 
       if !@team.nil? && params[:password] == @team.password
         @user = @team.users.create(user_params)
       else
-        flash[:errors].push "Team password was not correct"
+        flash[:validation_errors].push "Team password was not correct"
       end
     else 
       @team = Team.create(team_params)
@@ -33,8 +33,8 @@ class UsersController < ApplicationController
         format.js
       end
     else
-      flash[:errors].push @user.errors.full_messages if !@user.nil?
-      flash[:errors].push @team.errors.full_messages if !@team.nil?
+      flash[:validation_errors].push @user.errors.full_messages if !@user.nil?
+      flash[:validation_errors].push @team.errors.full_messages if !@team.nil?
       redirect_to :back
     end
 
