@@ -11,25 +11,33 @@ class UsersController < ApplicationController
   end
 
   def create
-    if !params[:team].nil?
-      @team = Team.create(team_params)
-      @user = @team.users.create(user_params)
+    # Just so we never have to worry about it being nil
+    flash[:errors] = []
+    if params[:team].nil?
+      @team = Team.find_by(params[:team_id])
+      flash[:errors].push "Invalid team selection" if @team.nil?
     else 
-      @team = Team.find(params[:team_id])
-      if params[:password] == @team.password
-        @user = @team.users.create(user_params)
-      else
-        # Flash some error message
-        flash[:failure] = "Could not create user"
+      @team = Team.create(team_params)
+    end 
+
+    if !@team.nil? && params[:password] == @team.password
+      @user = @team.users.create(user_params)
+    else
+      flash[:errors].push "Team password was not correct"
+    end
+
+    if !@user.nil? && @user.valid? && !@team.nil? && @team.valid?
+      log_in @user
+      respond_to do |format| 
+        format.html { redirect_to team_path(@team) }
+        format.js
       end
+    else
+      flash[:errors].push @user.errors.full_messages if !@user.nil?
+      flash[:errors].push @team.errors.full_messages if !@team.nil?
+      redirect_to :back
     end
 
-    log_in @user
-
-    respond_to do |format| 
-      format.html { redirect_to team_path(@team) }
-      format.js
-    end
   end
 
   private 
