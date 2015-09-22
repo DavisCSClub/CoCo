@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    # Just so we never have to worry about it being nil
     flash[:validation_errors] = []
     if params[:team].nil?
       @team = Team.find_by(params[:team_id])
@@ -24,6 +23,8 @@ class UsersController < ApplicationController
       end
     else 
       @team = Team.create(team_params)
+      @user = @team.users.create(user_params) if !@team.nil? && @team.valid?
+      @team.delete unless !@user.nil? && @user.valid?
     end 
 
     if !@user.nil? && @user.valid? && !@team.nil? && @team.valid?
