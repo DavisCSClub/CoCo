@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     flash[:validation_errors] = []
     if params[:team].nil?
-      @team = Team.find_by(params[:team_id])
+      @team = Team.find_by(id: params[:team_id])
       flash[:validation_errors].push "Invalid team selection" if @team.nil?
 
       if !@team.nil? && params[:password] == @team.password

@@ -13,14 +13,18 @@ class QuestionsController < ApplicationController
   end
 
   def submit 
-    @question = Question.find(params[:id])
-    if @question.answer == params[:answer]
-      flash[:success] = "Question answered successfuly!"
-      Answered.create(teamID: current_user.team_id, questionID: @question.id)
-      redirect_to questions_path
-    else
-      flash[:failure] = "Wrong answer"
+    if !logged_in
       redirect_to :back
+    else
+      @question = Question.find(params[:id])
+      if @question.answer == params[:answer]
+        flash[:success] = "Question answered successfuly!"
+        Answered.create(teamID: current_user.team_id, questionID: @question.id)
+        redirect_to questions_path
+      else
+        flash[:failure] = "Wrong answer"
+        redirect_to :back
+      end
     end
   end
 end 
