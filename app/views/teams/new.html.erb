@@ -1,11 +1,12 @@
 <% provide(:title, "New Team") %>
-<h1>Teams#new</h1>
-<p>Create a new team!</p>
+<h1>Create a new team!</h1>
 
 <%= form_for @team, url: {action: "create"} do |f| %>
+  <%= f.label :name %>
   <%= f.text_field :name %>
   <br />
+  <%= f.label :password %>
   <%= f.text_field :password %>
   <br />
-  <%= f.submit "Create Team" %>
+  <%= f.submit "Create Team", class: "waves-effect waves-light btn" %>
 <% end %>

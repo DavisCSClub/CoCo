@@ -1,4 +1,6 @@
 <%= form_for @team, remote: true do |f| %> 
-  Team Name : <%= f.text_field :name  %> <br />
-  Password  : <%= f.password_field :password %>
+  <%= f.label :name, "Team Name" %>
+  <%= f.text_field :name  %> <br />
+  <%= f.label :password %>
+  <%= f.password_field :password %>
 <% end %>

@@ -1,6 +1,6 @@
 <% provide(:title, "New User") %>
-<h1>Users#new</h1>
-<p>Create a new user! You may select an already existing team, or create a new team.</p>
+<h1>Create a new user</h1>
+<h5>You may select an already existing team, or create a new team.</h5>
 
 <% if !flash[:validation_errors].nil? %>
   <p>There were some problems with your form</p>
@@ -10,11 +10,13 @@
 <% end %>
 
 <%= form_for @user do |form| %>
-  Name     : <%= form.text_field :name %>  <br />
-  Email    : <%= form.text_field :email %> <br />
+  <%= form.label :name %>
+  <%= form.text_field :name %> <br />
+  <%= form.label :email %>
+  <%= form.text_field :email %> <br />
   <%= link_to 'Create a new team', new_user_path, remote: true, id: "new_team_button" %> <br />
   <div id="user-form">
     <%= render 'existing_team_form' %>
   </div>
-  <%= form.submit %>
+  <%= form.submit 'Create a New User', :class => 'waves-effect waves-light btn' %>
 <% end %>

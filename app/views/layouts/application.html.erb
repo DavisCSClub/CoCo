@@ -8,11 +8,11 @@
 
   <nav>
     <div class="nav-wrapper blue-grey darken-4">
-    <ul>
+    <%= link_to "Coder's Conundrum", root_path, class: "brand-logo", style: "padding-left: 10px;font-size: 1.5rem;" %>
+    <ul class="right hide-on-med-and-down">
       <% if logged_in %>
         <li>Welcome, <%= current_user.name %></li>
       <% end %> 
-      <li><%= link_to "Coder's Conundrum", root_path, id: "logo" %></li>
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Questions", questions_path %></li>
       <li><%= link_to "Teams", teams_path %></li>
@@ -38,7 +38,9 @@
       <% end %>
     </div>
 
-    <%= yield %>
+    <div class="container">
+     <%= yield %>
+    </div>
 
 </body>
 </html>
