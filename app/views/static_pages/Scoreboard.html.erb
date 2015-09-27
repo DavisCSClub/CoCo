@@ -7,13 +7,15 @@
 <% end %>
 
 
-<table border=1px>
-  <tr> 
-    <td>Team</td>
-    <% @questions.each do |q| %>
-      <th><%= q.title %></th>
-    <% end %>
-  </tr> 
+<table class="bordered striped">
+  <thead>
+    <tr> 
+      <td>Team</td>
+      <% @questions.each do |q| %>
+        <th><%= q.title %></th>
+      <% end %>
+    </tr>
+  </thead> 
   <% @teams.each do |t| %>
     <tr>
       <td><%= t.name %></td>

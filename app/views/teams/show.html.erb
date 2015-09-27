@@ -1,6 +1,7 @@
 <% provide(:title, @team.name) %>
-<h1><%= @team.name %></h1>
+<h1 class="center-align"><%= @team.name %></h1>
 <h3>Members</h3>
+<hr /><br />
 <ul>
 <% @team.users.each do |user| %> 
   <li><%= user.name %></li>
@@ -8,7 +9,7 @@
 </ul>
 
 <h3>Progress</h3>
-
+<hr /><br />
 <table border=1px>
   <tr>
   <% @questions.each do |q| %>

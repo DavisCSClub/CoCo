@@ -6,12 +6,13 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-  <%= link_to "Coder's Conundrum", root_path, id: "logo" %>
   <nav>
-    <ul>
+    <div class="nav-wrapper blue-grey darken-4">
+    <%= link_to "Coder's Conundrum", root_path, class: "brand-logo", style: "padding-left: 10px;font-size: 1.5rem;" %>
+    <ul class="right hide-on-med-and-down">
       <% if logged_in %>
         <li>Welcome, <%= current_user.name %></li>
-      <% end %>
+      <% end %> 
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Questions", questions_path %></li>
       <li><%= link_to "Teams", teams_path %></li>
@@ -23,6 +24,7 @@
         <li><%= link_to "Sign in", login_path %></li>
       <% end %>
     </ul>
+    </div>
   </nav>
 
 </head>
@@ -36,7 +38,9 @@
       <% end %>
     </div>
 
-    <%= yield %>
+    <div class="container">
+     <%= yield %>
+    </div>
 
 </body>
 </html>

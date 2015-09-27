@@ -1,3 +1,5 @@
-Team     : <%= select_tag(:team_id, options_from_collection_for_select(Team.all, :id, :name, prompt: "Select an existing team")) %> <br />
-Password : <%= password_field_tag :password %>
+<%= label_tag "Team" %>
+<%= select_tag(:team_id, options_from_collection_for_select(Team.all, :id, :name, prompt: "Select an existing team")) %> <br />
+<%= label_tag "Password" %>
+<%= password_field_tag :password %>
 
