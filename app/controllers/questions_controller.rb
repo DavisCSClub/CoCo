@@ -20,6 +20,12 @@ class QuestionsController < ApplicationController
       if @question.answer == params[:answer]
         flash[:success] = "Question answered successfuly!"
         Answered.create(teamID: current_user.team_id, questionID: @question.id)
+
+        # TODO(aaparella) : Check if there is an easier way to do this?
+        @t = Team.find(current_user.team_id)
+        @t.questions_answered += 1
+        @t.save
+
         redirect_to questions_path
       else
         flash[:failure] = "Wrong answer"

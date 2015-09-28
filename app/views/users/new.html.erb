@@ -14,9 +14,10 @@
   <%= form.text_field :name %> <br />
   <%= form.label :email %>
   <%= form.text_field :email %> <br />
-  <%= link_to 'Create a new team', new_user_path, remote: true, id: "new_team_button" %> <br />
   <div id="user-form">
     <%= render 'existing_team_form' %>
   </div>
-  <%= form.submit 'Create a New User', :class => 'waves-effect waves-light btn' %>
+  <%= link_to 'Or create a new team', new_user_path, remote: true, id: "new_team_button" %> <br />
+  <br />
+  <%= form.submit 'Create User', :class => 'waves-effect waves-light btn' %>
 <% end %>

@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
 
     # Return the Team that is leading, or nil if none is leading
     def current_leader 
-      @teams = Team.order(questions_answered: :desc)
+      @teams  = Team.order(:questions_answered)
       @first  = @teams.first
       @second = @teams.second
 
