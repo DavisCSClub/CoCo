@@ -2,11 +2,16 @@ class UsersController < ApplicationController
   before_action :all_users, only: [:create, :index]
 
   def new
-    @user = User.new
-    @team = Team.new
-    respond_to do |format| 
-      format.html
-      format.js
+    if !logged_in
+      @user = User.new
+      @team = Team.new
+      respond_to do |format| 
+        format.html
+        format.js
+      end
+    else
+      flash[:error] = "You are already logged in"
+      redirect_to root_path
     end
   end
 
