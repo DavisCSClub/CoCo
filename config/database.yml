@@ -22,4 +22,8 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  host: localhost
+  username: <%= ENV["RAILS_USER"] %>
+  password: <%= ENV["RAILS_PASSWORD"] %>
+  database: coco_production
