@@ -5,7 +5,7 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
   pool: 5
   timeout: 5000
 
@@ -22,8 +22,6 @@ test:
 
 production:
   <<: *default
-  adapter: postgresql
-  host: localhost
   username: <%= ENV["RAILS_USER"] %>
   password: <%= ENV["RAILS_PASSWORD"] %>
   database: coco_production
