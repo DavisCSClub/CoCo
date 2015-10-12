@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
       redirect_to :back
     else
       @question = Question.find(params[:id])
-      if @question.answer == params[:answer]
+      if @question.answer.downcase == params[:answer].downcase
         flash[:success] = "Question answered successfuly!"
         Answered.create(teamID: current_user.team_id, questionID: @question.id)
 
